@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package>
+  <name>hector_slam_demo</name>
+  <version>0.0.1</version>
+  <description>demo nodes for hector_slam with kinect2</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag --> 
+  <maintainer email="306538517@qq.com">Cayla Xu</maintainer>
+
+  <license>MIT</license>
+
+  <!-- <url type="website">https://github.com/DaikiMaekawa/hector-slam-example</url> -->
+
+
+  <!-- Author tags are optional, mutiple are allowed, one per tag -->
+  <!-- Authors do not have to be maintianers, but could be -->
+  <!-- Example: -->
+  <author email="306538517@qq.com">Cayla Xu</author>
+
+
+  <!-- The *_depend tags are used to specify dependencies -->
+  <!-- Dependencies can be catkin packages or system dependencies -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>hector_mapping</run_depend>
+  <run_depend>hector_geotiff</run_depend>
+  <run_depend>hector_trajectory_server</run_depend>
+  <run_depend>hector_geotiff_plugins</run_depend>
+  <!-- <run_depend>urg_node</run_depend> -->
+  <run_depend>depthimage_to_laserscan</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>rviz</run_depend>
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- You can specify that this package is a metapackage here: -->
+    <!-- <metapackage/> -->
+
+    <!-- Other tools can request additional information be placed here -->
+  </export>
+@qq.com</package>

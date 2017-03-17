@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="base_name" default="kinect2"/>
+  <arg name="image_fromat" default="qhd"/><!-- this fromat has three types [hd, qhd, sd]-->
+
+  <!-- Kinect2 and depthimage to laserscan -->
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch"/>
+
+  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_2_laserscan" output="screen">
+    <remap from="image" to="/$(arg base_name)/qhd/image_depth_rect"/>
+    <remap from="camera_info" to="/$(arg base_name)/qhd/camera_info"/>
+    <remap from="scan" to="/scan" /> 
+    <param name="output_frame_id" value="$(arg base_name)_link_frame"/>
+    <param name="scan_height" value="5"/>
+    <param name="range_min" value="0.40"/>
+  </node>
+
+
+  <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0.0 0.0 0.0 0.0 0.0 0.0 /map /base_footprint 10"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_footprint_2_base_link" args="0.0 0.0 0.0 0.0 0.0 0.0 /base_footprint /base_link 10"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_link_2_kinect2_link" args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /kinect2_link_frame 10"/>
+  <node pkg="tf" type="static_transform_publisher" name="camera_depeth_frame_2_nav" args="0.0 0.0 0.0 0.0 0.0 0.0 /$(arg base_name)_link_frame /nav 10"/>
+
+  <include file="$(find hector_slam_demo)/launch/default_mapping.launch"/> 
+  <include file="$(find hector_geotiff)/launch/geotiff_mapper.launch"/>
+
+</launch>
